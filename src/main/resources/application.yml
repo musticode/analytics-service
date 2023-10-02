@@ -1,0 +1,55 @@
+server:
+  port: 8081
+spring:
+#  main:
+#    allow-bean-definition-overriding: true
+
+  application:
+    name: ANALYTICS-SERVICE
+
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/analytics
+    username: username
+    password: password
+
+  data:
+    mongodb:
+      database: analytics
+      host: localhost
+      port: 27017
+
+  #autoconfigure:
+   # exclude: org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    database: postgresql
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+
+  kafka:
+    consumer:
+      auto-offset-reset: earliest
+      bootstrap-servers: localhost:9092
+      group-id: log
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      properties:
+        spring:
+          json:
+            trusted:
+              packages: '*'
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+    producer:
+      group-id: log
+      bootstrap-servers: localhost:9092
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+    topic:
+      name: log_topic
+redis:
+  port: 6379
+  host: localhost
+application:
+  config:
+    supplier-url: http://localhost:8080/api/v1/users
