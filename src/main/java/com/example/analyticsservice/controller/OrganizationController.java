@@ -1,5 +1,6 @@
 package com.example.analyticsservice.controller;
 
+import com.example.analyticsservice.constant.OrganizationConstant;
 import com.example.analyticsservice.dto.organization.OrganizationDTO;
 import com.example.analyticsservice.dto.organization.OrganizationRequest;
 import com.example.analyticsservice.dto.organization.OrganizationResponse;
@@ -12,7 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/v1/organizations")
+@RequestMapping(OrganizationConstant.ORGANIZATION_ENDPOINT)
 @RequiredArgsConstructor
 public class OrganizationController {
     private final OrganizationService organizationService;

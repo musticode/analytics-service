@@ -1,6 +1,7 @@
 package com.example.analyticsservice.service.impl;
 
 import com.example.analyticsservice.dto.event.NotificationEvent;
+import com.example.analyticsservice.dto.log.LogDTO;
 import com.example.analyticsservice.dto.log.LogRequest;
 import com.example.analyticsservice.dto.log.LogResponse;
 
@@ -74,6 +75,16 @@ public class LogServiceImpl implements LogService {
     }
 
 
+    public Log createLogToMongo(LogDTO logDTO){
+
+        Log log = new Log();
+        log.setMessage(logDTO.getMessage());
+        log.setSeverity(logDTO.getSeverity());
+        log.setTimestamp(new Date());
+        log.setSource(logDTO.getSource());
+
+        return log;
+    }
 
 
 
