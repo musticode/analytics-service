@@ -62,5 +62,130 @@ This backend project is designed to process and analyze log data in real-time, p
 - User Authentication and Authorization Libraries (e.g., OAuth, JWT): To secure access to the dashboard.
 - Monitoring and Alerting Tools (e.g., Prometheus, Grafana): To monitor system health and trigger alerts.
 - This project serves as a practical example of how to combine Elasticsearch, Kafka, MongoDB, and Redis to build a real-time analytics dashboard for log processing and analysis. It showcases the power of these technologies in handling large-scale data streams and providing valuable insights for system monitoring and troubleshooting.
+```
+------------------------------------------
+|              Real-time Analytics        |
+|               Dashboard                 |
+------------------------------------------
+| - ElasticsearchClient                   |
+| - RedisClient                           |
+| - KafkaConsumer                         |
+| - MongoDBClient                         |
+| - UserAuthenticationManager            |
+| - UserAuthorizationManager             |
+| - LogDataProcessor                      |
+| - VisualizationManager                 |
+| - AlertingService                       |
+|----------------------------------------|
+| + displayDashboard()                   |
+| + performSearch(query: string)         |
+| + setAlertThreshold(metric: string)    |
+| + createAlertRule(rule: AlertRule)     |
+| + authenticateUser(username, password) |
+| + authorizeUser(user, permission)      |
+| + processData(logData: LogData)       |
+|----------------------------------------|
+
+------------------------------------------
+|                  User                   |
+------------------------------------------
+| - username: string                      |
+| - password: string                      |
+| - role: string                          |
+|----------------------------------------|
+| + login(username, password)             |
+| + logout()                              |
+| + viewDashboard()                       |
+| + searchLogs(query: string)             |
+| + createAlertRule(rule: AlertRule)      |
+|----------------------------------------|
+
+------------------------------------------
+|                Log Data                 |
+------------------------------------------
+| - timestamp: DateTime                   |
+| - source: string                        |
+| - message: string                       |
+| - severity: string                      |
+|----------------------------------------|
+| + getTimestamp()                        |
+| + getSource()                           |
+| + getMessage()                          |
+| + getSeverity()                         |
+|----------------------------------------|
+
+------------------------------------------
+|           Visualization                  |
+|           Manager                        |
+------------------------------------------
+| - chartData: ChartData                  |
+| - visualizationType: string             |
+|----------------------------------------|
+| + renderChart(data: ChartData)          |
+| + updateVisualization(type: string)    |
+|----------------------------------------|
+
+------------------------------------------
+|             Alerting                     |
+|             Service                      |
+------------------------------------------
+| - alerts: Alert[]                       |
+| - notificationService: NotificationService |
+|----------------------------------------|
+| + createAlertRule(rule: AlertRule)      |
+| + removeAlertRule(rule: AlertRule)      |
+| + sendNotification(alert: Alert)       |
+|----------------------------------------|
+
+------------------------------------------
+|               Elasticsearch             |
+|               Client                    |
+------------------------------------------
+| - connection: Connection                |
+| - index: string                         |
+|----------------------------------------|
+| + connect(host: string, port: number)   |
+| + search(query: string)                 |
+| + indexDocument(document: Document)    |
+|----------------------------------------|
+
+------------------------------------------
+|                 Redis                   |
+|               Client                    |
+------------------------------------------
+| - connection: Connection                |
+| - cacheKey: string                     |
+|----------------------------------------|
+| + connect(host: string, port: number)   |
+| + get(key: string)                     |
+| + set(key: string, value: string)      |
+|----------------------------------------|
+
+------------------------------------------
+|                 Kafka                   |
+|             Consumer                     |
+------------------------------------------
+| - topic: string                         |
+| - consumerGroup: string                 |
+| - brokers: string[]                     |
+|----------------------------------------|
+| + subscribeToTopic(topic: string)      |
+| + consume()                            |
+|----------------------------------------|
+
+------------------------------------------
+|               MongoDB                   |
+|               Client                    |
+------------------------------------------
+| - connection: Connection                |
+| - database: string                     |
+| - collection: string                   |
+|----------------------------------------|
+| + connect(host: string, port: number)   |
+| + insertDocument(document: Document)  |
+| + updateDocument(filter: Filter, update: Update) |
+| + findDocuments(filter: Filter)         |
+|----------------------------------------|
+```
 
 ![img.png](img.png)
