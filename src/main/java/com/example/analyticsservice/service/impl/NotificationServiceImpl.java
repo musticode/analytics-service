@@ -2,7 +2,9 @@ package com.example.analyticsservice.service.impl;
 
 import com.example.analyticsservice.dto.event.NotificationEvent;
 import com.example.analyticsservice.model.es.NotificationEs;
+import com.example.analyticsservice.model.mongo.NotificationMongo;
 import com.example.analyticsservice.repository.es.NotificationEsRepository;
+import com.example.analyticsservice.repository.mongo.NotificationMongoRepository;
 import com.example.analyticsservice.service.NotificationService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -14,6 +16,7 @@ import org.springframework.stereotype.Service;
 @Slf4j
 public class NotificationServiceImpl implements NotificationService {
     private final NotificationEsRepository notificationEsRepository;
+    private final NotificationMongoRepository notificationMongoRepository;
 
     @KafkaListener(
             topics = "${spring.kafka.topic.name}",
@@ -30,9 +33,16 @@ public class NotificationServiceImpl implements NotificationService {
                 .message(notificationEvent.getLogData().getMessage())
                 .build();
 
+        NotificationMongo notificationMongo = NotificationMongo.builder()
+                .source(notificationEvent.getLogData().getSource())
+                .timestamp(notificationEvent.getLogData().getTimestamp())
+                .severity(notificationEvent.getLogData().getSeverity())
+                .message(notificationEvent.getLogData().getMessage())
+                .build();
+
+
         saveNotificationToElastic(notificationEs);
-
-
+        saveNotificationToMongo(notificationMongo);
         sendNotificationToUsers(notificationEvent);
     }
 
@@ -52,7 +62,13 @@ public class NotificationServiceImpl implements NotificationService {
         return savedNotification;
     }
 
+    @Override
+    public NotificationMongo saveNotificationToMongo(NotificationMongo notificationMongo){
+        log.info("Saved: {}", notificationMongo.toString());
+        return notificationMongoRepository.save(notificationMongo);
+    }
+
     private void sendNotificationToUsers(NotificationEvent notificationEvent){
-        System.out.println("Notification is sent to users...!");
+        log.info("Sending notification to users : {}", notificationEvent.toString());
     }
 }

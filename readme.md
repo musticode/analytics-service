@@ -62,3 +62,5 @@ This backend project is designed to process and analyze log data in real-time, p
 - User Authentication and Authorization Libraries (e.g., OAuth, JWT): To secure access to the dashboard.
 - Monitoring and Alerting Tools (e.g., Prometheus, Grafana): To monitor system health and trigger alerts.
 - This project serves as a practical example of how to combine Elasticsearch, Kafka, MongoDB, and Redis to build a real-time analytics dashboard for log processing and analysis. It showcases the power of these technologies in handling large-scale data streams and providing valuable insights for system monitoring and troubleshooting.
+
+![img.png](img.png)
