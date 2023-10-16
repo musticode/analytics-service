@@ -12,6 +12,7 @@ import com.example.analyticsservice.model.mongo.Log;
 
 import com.example.analyticsservice.repository.es.LogEsRepository;
 import com.example.analyticsservice.repository.mongo.LogMongoRepository;
+import com.example.analyticsservice.repository.postgre.LogDataRepository;
 import com.example.analyticsservice.service.LogService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -33,6 +34,7 @@ public class LogServiceImpl implements LogService {
     private final LogEsRepository logEsRepository;
     private final ModelMapper modelMapper;
     private final LogProducerService logProducerService;
+    private final LogDataRepository logDataRepository;
 
     @Override
     public LogResponse createLog(LogRequest logRequest) {
@@ -53,6 +55,14 @@ public class LogServiceImpl implements LogService {
                 .message(logRequest.getMessage())
                 .build();
 
+        LogData logData = LogData.builder()
+                .timestamp(new Date())
+                .source(logRequest.getSource())
+                .message(logRequest.getMessage())
+                .severity(logRequest.getSeverity())
+                .build();
+
+        logDataRepository.save(logData);
         logEsRepository.save(logEs);
         logMongoRepository.save(log);
 

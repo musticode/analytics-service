@@ -24,4 +24,7 @@ public class LogData {
     private String source;
     private String message;
     private String severity;
+
+    @ManyToOne
+    private Organization organization;
 }

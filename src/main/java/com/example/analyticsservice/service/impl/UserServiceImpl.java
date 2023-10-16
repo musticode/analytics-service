@@ -5,7 +5,7 @@ import com.example.analyticsservice.dto.user.UserResponse;
 import com.example.analyticsservice.exception.user.UserNotFoundException;
 import com.example.analyticsservice.exception.user.UserAlreadyExistException;
 import com.example.analyticsservice.model.User;
-import com.example.analyticsservice.repository.UserRepository;
+import com.example.analyticsservice.repository.postgre.UserRepository;
 import com.example.analyticsservice.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

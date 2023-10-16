@@ -1,4 +1,4 @@
-package com.example.analyticsservice.repository;
+package com.example.analyticsservice.repository.postgre;
 
 import com.example.analyticsservice.model.Organization;
 import org.springframework.data.jpa.repository.JpaRepository;

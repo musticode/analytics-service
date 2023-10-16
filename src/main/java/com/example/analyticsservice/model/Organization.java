@@ -1,5 +1,6 @@
 package com.example.analyticsservice.model;
 
+import com.example.analyticsservice.model.mongo.Log;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -30,6 +31,10 @@ public class Organization implements Serializable {
     @OneToMany(mappedBy = "organization", cascade = CascadeType.ALL) // Cascade operations to related applications
     @JsonIgnore
     private List<Application> applications;
+
+    @OneToMany(mappedBy = "organization", cascade = CascadeType.ALL) // Cascade operations to related applications
+    @JsonIgnore
+    private List<LogData> logs;
 
 
 }
