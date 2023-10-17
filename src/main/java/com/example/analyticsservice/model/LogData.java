@@ -1,6 +1,8 @@
 package com.example.analyticsservice.model;
 
 
+import com.example.analyticsservice.dto.alert.AlertRule;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -27,4 +29,10 @@ public class LogData {
 
     @ManyToOne
     private Organization organization;
+
+    @ManyToOne
+    @JsonIgnore
+    @JoinColumn(name = "alert_rule_id", referencedColumnName = "id")
+    private AlertRule alertRule;
+
 }

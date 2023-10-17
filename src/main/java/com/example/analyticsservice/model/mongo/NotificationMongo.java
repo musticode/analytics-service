@@ -18,6 +18,7 @@ import java.util.Date;
 @NoArgsConstructor
 @Builder
 public class NotificationMongo {
+
     @Id
     @Indexed(unique=true)
     private String  id;
