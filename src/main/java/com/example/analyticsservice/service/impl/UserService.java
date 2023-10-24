@@ -23,7 +23,11 @@ public class UserService implements UserDetailsService {
 
 
     public User findUserByEmail(String email){
-        return userRepository.findByEmail(email);
+        return userRepository
+                .findByEmail(email)
+                .orElseThrow(()->
+                        new UsernameNotFoundException("Not found user with id")
+                );
     }
 
 

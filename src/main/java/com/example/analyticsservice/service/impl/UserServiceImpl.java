@@ -10,6 +10,7 @@ import com.example.analyticsservice.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -72,8 +73,13 @@ public class UserServiceImpl implements UserService {
     }
 
     public User findUserByEmail(String email){
-        return userRepository.findByEmail(email);
+        return userRepository
+                .findByEmail(email)
+                .orElseThrow(()->
+                        new UsernameNotFoundException("Not found user with id")
+                );
     }
+
 
 
     private UserResponse mapToResponse(User user){
