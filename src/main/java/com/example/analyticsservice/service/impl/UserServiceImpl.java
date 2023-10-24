@@ -71,6 +71,10 @@ public class UserServiceImpl implements UserService {
                 .collect(Collectors.toList());
     }
 
+    public User findUserByEmail(String email){
+        return userRepository.findByEmail(email);
+    }
+
 
     private UserResponse mapToResponse(User user){
         return modelMapper.map(user, UserResponse.class);

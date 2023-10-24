@@ -10,6 +10,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @RequiredArgsConstructor
 @Service
 @Slf4j
@@ -40,6 +43,22 @@ public class AlertServiceImpl implements AlertService {
 
         return alertRule;
     }
+
+    @Override
+    public List<AlertRule> findAllAlerts() {
+        List<AlertRule> alertRules = alertRuleRepository.findAll();
+        return alertRules;
+    }
+
+    @Override
+    public Void deleteAlertRuleById(long alertId) {
+
+        AlertRule alertRule = findAlertRule(alertId);
+        alertRuleRepository.delete(alertRule);
+
+        return null;
+    }
+
 
     public AlertRule mapToEntity(AlertRuleRequest alertRuleRequest){
         return modelMapper.map(alertRuleRequest, AlertRule.class);

@@ -189,3 +189,6 @@ This backend project is designed to process and analyze log data in real-time, p
 ```
 
 ![img.png](img.png)
+
+#### Notes: 
+- restart broker if kafka has errors

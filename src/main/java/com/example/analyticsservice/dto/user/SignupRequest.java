@@ -1,24 +1,18 @@
 package com.example.analyticsservice.dto.user;
 
-import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.Set;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class UserCreateRequest {
-    @NotNull @NotEmpty
+public class SignupRequest {
     private String username;
-
-    @NotNull @NotEmpty
     private String password;
-
-    private String firstName;
-    private String lastName;
-    private String email;
+    private Set<String> role;
 }
